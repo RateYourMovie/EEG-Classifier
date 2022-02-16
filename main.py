@@ -10,7 +10,7 @@ from model import neural_network_model
 
 
 Channels=21
-batch_size=2500
+batch_size=21
 
 def train_model(train_data, model = False):
     X=np.array([i[0] for i in train_data]).reshape([-1,Channels,batch_size,1])
@@ -21,10 +21,12 @@ def train_model(train_data, model = False):
     if not model:
         model = neural_network_model(Channels,batch_size)
     
-    model.fit({'input':X},{'targets':Y},n_epoch=30,show_metric=True,run_id='EEG_Classifier_2')
+    model.fit({'input':X},{'targets':Y},n_epoch=350,show_metric=True,run_id='EEG_Classifier_plv')
     return model
 
 
-training_data=np.load('data/training_data_1.npy',allow_pickle=True)
+training_data=np.load('data/training_data_plv_2sec.npy',allow_pickle=True)
 model = train_model(training_data)
-model.save('model_1.tflearn')
+model.save('model_plv_2sec.tflearn')
+
+# print(training_data.shape[0])
