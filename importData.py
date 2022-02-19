@@ -4,8 +4,10 @@ import mne
 import os
 from sklearn import preprocessing
 from sklearn.preprocessing import MinMaxScaler
+from default import DATASET
 
-all_file_path=glob(r'C:\\Users\\goenk\\Desktop\\Machine-Learning\\EEG-Classifier\\eeg-during-mental-arithmetic-tasks-1.0.0\\eeg-during-mental-arithmetic-tasks-1.0.0\\*.edf')
+# all_file_path=glob(r'C:\\Users\\goenk\\Desktop\\Machine-Learning\\EEG-Classifier\\eeg-during-mental-arithmetic-tasks-1.0.0\\eeg-during-mental-arithmetic-tasks-1.0.0\\*.edf')
+all_file_path=glob(DATASET)
 
 three_file_path=[i for i in all_file_path if '1' in i.split('_')[1]]
 one_file_path=[i for i in all_file_path if '2' in i.split('_')[1]]
