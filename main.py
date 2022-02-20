@@ -7,7 +7,7 @@ import mne
 import matplotlib.pyplot as plt
 import pandas as pd
 # from model import neural_network_model
-from kerasModel import neural_network_LSTM, neural_network_LSTM_2, neural_network_BLSTM
+from kerasModel import neural_network_ConvLSTM, neural_network_LSTM, neural_network_LSTM_2, neural_network_BLSTM
 
 
 Channels=21
@@ -40,9 +40,22 @@ def train_model_LSTM(train_data, model = False):
     model.fit(X, Y, epochs=1000)
     return model
 
+def train_model_ConvLSTM(train_data, model = False):
+    X=np.array([i[0] for i in train_data]).reshape([-1, 1, Channels,Channels, 1])
+    # X=np.array(input_data).reshape([-1,21,2500,1])
+    Y=[i[1] for i in train_data]
+    Y=np.array(Y)
+    print(X.shape,Y[1])
+    if not model:
+        model = neural_network_ConvLSTM(Channels,Channels)
+    
+    model.fit(X, Y, epochs = 25)
+    return model
+    # return False
 
-training_data=np.load('data/training_data_entropy_1D.npy',allow_pickle=True)
-model = train_model_LSTM(training_data)
-model.save('model_entropy_BLSTM')
+
+training_data=np.load('data/training_data_MI_Matrix.npy',allow_pickle=True)
+model = train_model_ConvLSTM(training_data)
+model.save('model_MI_ConvLSTM_2_layers')
 
 # print(training_data.shape[0])

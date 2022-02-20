@@ -5,8 +5,8 @@ from random import shuffle
 
 result_array_three=[]
 result_array_one=[]
-three_minute_data=np.load('data/three_file_path/entropy_three_minute_data_processed_1D.npy')
-one_minute_data=np.load('data/one_file_path/entropy_one_minute_data_processed_1D.npy')
+three_minute_data=np.load('./data/three_file_path/MI_three_minute_data_2sec.npy')
+one_minute_data=np.load('./data/one_file_path/MI_one_minute_data_2sec.npy')
 
 # print(three_minute_data.shape)
 # print(one_minute_data.shape)
@@ -49,5 +49,5 @@ testing_data=np.array(testing_data)
 
 # print(y_train_3.shape)
 print(training_data.shape,testing_data.shape)
-np.save('data/training_data_entropy_1D.npy',training_data)
-np.save('data/testing_data_entropy_1D.npy',testing_data)
+np.save('data/training_data_MI_Matrix.npy',training_data)
+np.save('data/testing_data_MI_Matrix.npy',testing_data)
